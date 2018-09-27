@@ -1,5 +1,6 @@
 const http = require('http');
 const mysql = require('mysql');
+const fs = require('fs');
 
 const hostname = "127.0.0.1";
 const port = "3000";
@@ -8,6 +9,10 @@ const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    var myReadStream = fs.createReadStream(__dirname + '/index.html', 'utf-8');
+    //fetchApps(res);
+    myReadStream.pipe(res, end=false);
     fetchApps(res);
 });
 
