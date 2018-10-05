@@ -15,5 +15,19 @@ $(document).ready(function(){
   apps_click.click(function() {
     $("#placeholder").hide();
     $("#cat_table").show();
+    $.ajax({
+      type: 'GET',
+      url: '/appetizers',
+      success:function(data) {
+        $.each(data[0], function(key, value) {
+          console.log(key);
+          console.log(value);
+          var row = document.createElement("tr");
+          var cell1 = document.createElement("td");
+          var cell2 = document.createElement("td");
+          var cell3 = document.createElement("td");
+        });
+      }
+    });
   });
 });
