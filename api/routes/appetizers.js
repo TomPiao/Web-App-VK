@@ -3,10 +3,15 @@ const router = express.Router();
 const connection = require('./../../dbConnection');
 
 router.get('/', (req, res, next) => {
-    connection.query("SELECT * FROM Appetizers", function (err, result, fields) {
+    connection.query("SELECT DISTINCT * FROM Appetizers", function (err, result, fields) {
         if (err) throw err;
-        res.send(result);
-        //res.send(JSON.stringify({'response': result}));
+        if (result.length == 0) {
+            res.status(404).json ({
+                message: 'Error: Table does not exist'
+            });
+        } else {
+            res.send(result);
+        }
     });
 });
 
@@ -19,9 +24,15 @@ router.post('/', (req, res, next) => {
 
 router.get('/:appetizerID', (req, res, next) => {
     var id = req.params.appetizerID;
-    res.status(200).json ({
-        message: 'passed in an id',
-        id: id
+    connection.query("SELECT DISTINCT * FROM Appetizers WHERE ID = " + JSON.stringify(id), function (err, result, fields) {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.status(404).json ({
+                message: 'Error: item does not exist'
+            });
+        } else {
+            res.send(result);
+        }
     });
 });
 
