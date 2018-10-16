@@ -17,7 +17,7 @@ $(document).ready(function(){
     $("#cat_table").show();
     $.ajax({
       type: 'GET',
-      url: '/appetizers',
+      url: 'https://localhost:3000/appetizers',
       success:function(data) {
         $.each(data[0], function(key, value) {
           console.log(key);

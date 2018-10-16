@@ -1,7 +1,7 @@
 const http = require('http');
 const app = require('./app');
 const fs = require('fs');
-const port = "8000";
+const port = "3000";
 
 function onRequest(req, res) {
     res.writeHead(200, {'Content-Type':'text/html'});
