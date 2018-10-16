@@ -17,8 +17,17 @@ router.get('/', (req, res, next) => {
 
 
 router.post('/', (req, res, next) => {
-    res.status(201).json ({
-        message: 'handling Post requests for appetizers'
+    var id = req.body.appId;
+    var name = req.body.Name;
+    var price = req.body.Price;
+    connection.query("INSERT INTO Appetizers (ID, Name, Price) VALUES ('" + id + "', '" + name + "', '" + price + "')", function (err, result, fields) {
+        if (err) throw err;
+        res.status(201).json ({
+            message: 'handling Post requests for appetizers',
+            ID: id,
+            Name: name,
+            Price: price
+        });
     });
 });
 
