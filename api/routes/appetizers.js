@@ -52,8 +52,13 @@ router.patch('/', (req, res, next) => {
 });
 
 router.delete('/', (req, res, next) => {
-    res.status(200).json ({
-        message: 'handling Delete requests for appetizers'
+    var id = req.body.appId;
+    connection.query("DELETE FROM Appetizers WHERE ID = '" + id + "'", function (err, result, fields) {
+        if (err) throw err;
+
+        res.status(200).json ({
+            message: 'Deleted ' + id
+        });
     });
 });
 
