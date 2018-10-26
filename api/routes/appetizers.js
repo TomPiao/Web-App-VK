@@ -13,6 +13,7 @@ router.get('/', (req, res, next) => {
             res.send(result);
         }
     });
+    res.sendFile('../../public/index.html');
 });
 
 
