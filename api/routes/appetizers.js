@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
 const connection = require('./../../dbConnection');
 
@@ -13,7 +14,7 @@ router.get('/', (req, res, next) => {
             res.send(result);
         }
     });
-    res.sendFile('../../public/index.html');
+    //return res.sendFile(path.join(__dirname + '../../../public/appetizers/index.html'));
 });
 
 

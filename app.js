@@ -4,7 +4,6 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
 const path = require('path');
 
 const appRoutes = require('./api/routes/appetizers');
@@ -26,9 +25,12 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/home'));
 
-app.use('/appetizers', appRoutes);
+//app.use('/appetizers', appRoutes, function (req, res, next) {
+  //  res.sendFile(path.join(__dirname + '/public/appetizers/index.html'));
+    //next(appRoutes);
+//});
 
 app.use((req, res, next) => {
     const error = new Error("Not found");
