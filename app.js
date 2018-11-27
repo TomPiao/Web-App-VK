@@ -25,12 +25,15 @@ app.use((req, res, next) => {
     next();
 });
 
+//app.use('/appetizers', appRoutes);
+
 app.use(express.static(__dirname + '/public/home'));
 
 //app.use('/appetizers', appRoutes, function (req, res, next) {
-  //  res.sendFile(path.join(__dirname + '/public/appetizers/index.html'));
-    //next(appRoutes);
+//    res.render(path.join(__dirname + '/public/home/appetizers.html'));
+//    next(appRoutes);
 //});
+app.use('/appetizers', appRoutes);
 
 app.use((req, res, next) => {
     const error = new Error("Not found");

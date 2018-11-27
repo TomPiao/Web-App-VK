@@ -4,6 +4,7 @@ const router = express.Router();
 const connection = require('./../../dbConnection');
 
 router.get('/', (req, res, next) => {
+    //res.sendFile(path.join(__dirname + '../../../public/home/appetizers.html'));
     connection.query("SELECT DISTINCT * FROM Appetizers", function (err, result, fields) {
         if (err) throw err;
         if (result.length == 0) {
@@ -14,7 +15,7 @@ router.get('/', (req, res, next) => {
             res.send(result);
         }
     });
-    //return res.sendFile(path.join(__dirname + '../../../public/appetizers/index.html'));
+   // return res.render(path.join(__dirname + '../../../public/home/appetizers.html'));
 });
 
 
